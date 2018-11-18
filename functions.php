@@ -22,6 +22,8 @@ if (!class_exists('Book765')) {
             add_action('after_setup_theme', array(
                 $this, 'after_setup_theme'));
             add_action('widgets_init', array($this, 'widgets_init'));
+            add_action('wp_enqueue_scripts', array(
+                $this, 'wp_enqueue_scripts'));
         }
         /**
          * Setup theme
@@ -54,6 +56,16 @@ if (!class_exists('Book765')) {
                 'id' => 'sidebar-2',
                 'description' => __('Secondary sidebar content', 'book765')
             ));
+        }
+        /**
+         * Enqueue scripts and styles
+         */
+        public function wp_enqueue_scripts() {
+            wp_enqueue_style('normalize', get_template_directory_uri() .
+                '/normalize.css', array(), '8.0.1');
+            wp_enqueue_style('theme-css', get_stylesheet_uri(),
+                array(), '1.0');
+            wp_enqueue_script('jquery');
         }
     }
 }
